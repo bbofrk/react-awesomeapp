@@ -43,10 +43,22 @@ var AwesomeProject = React.createClass({
       .done();
   },
   render: function() {
-    // if (!this.state.movies) {
-    //   return this.renderLoadingView();
-    // }
-
+    if (!this.state.movies) {
+      return this.renderLoadingView();
+    }
+    var movie = this.state.movies[0];
+    return this.renderMovie(movie);
+  },
+  renderLoadingView: function() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          Loading movies...
+        </Text>
+      </View>
+    );
+  },
+  renderMovie: function(movie) {
     return (
       <View style={styles.container}>
         <Image
@@ -58,7 +70,7 @@ var AwesomeProject = React.createClass({
           <Text style={styles.year}>{movie.year}</Text>
         </View>
       </View>
-    );
+    )
   }
 });
 
